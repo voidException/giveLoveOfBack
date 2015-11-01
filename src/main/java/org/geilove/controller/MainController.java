@@ -27,6 +27,7 @@ public class MainController {
 	class TweetHelp{
 		private Long tweetID;
 		private Long sourceMsgID;
+		
 		public Long getTweetID() {
 			return tweetID;
 		}
@@ -47,13 +48,13 @@ public class MainController {
 		Integer  page=tweetListVo.getPage();
 		Integer  pageSize=tweetListVo.getPageSize();
 		List<TweetByTweetUo> tweetBytweets=new ArrayList<TweetByTweetUo>();		
-		Map<String,Object> map=new HashMap<String,Object>();
+		Map<String,Object> map=new HashMap<String,Object>();//存放查询的参数
 		map.put("userID", userID);
 		map.put("page", page);
 		map.put("pageSize", pageSize);
 		
 /* ---------先取得这组原始推文，加上头像和超链接-------------------------------------------------------------*/
-		List<Tweet> tweets=mainService.getTweetList(map);		
+		List<Tweet> tweets=mainService.getTweetList(map); 		
 		//根据推文的userID取得对应用户的头像，先用默认的吧。被转发的原始推文不需要取得头像 。并且为每一个被@的用户加上超链接。
 		for(Tweet tw:tweets){
 			System.out.println(tw.getTweetid());//打印查看下
@@ -87,10 +88,16 @@ public class MainController {
 		}
 			
 /* -------根据helps中的关联关系，组合成最终要返回的tweetBytweets------------------------------------------------*/
-		
+		//这个地方组合推文返回
 		
 		return tweetBytweets;
 	} 	
+	
+	
+	
+	
+	
+	
 }
 
 
