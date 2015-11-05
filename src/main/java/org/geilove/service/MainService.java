@@ -14,5 +14,7 @@ public interface  MainService {
 	public List<Tweet> getTweetList(Map<String, Object> map);
 	
 	public List<Tweet> getTweetByDiffIDs(List<Long> lst);
+	
+	public Integer updateTweetByKeySelective(Tweet recoord);//只更新记录不为空的字段
    
 }

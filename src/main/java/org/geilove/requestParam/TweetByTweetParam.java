@@ -1,8 +1,8 @@
-package org.geilove.uo;
+package org.geilove.requestParam;
 import java.util.Date;
 
 import org.geilove.pojo.Tweet;
-public class TweetByTweetUo {
+public class TweetByTweetParam {
 	
 		private Tweet tweet;//这个是转发的推文
 	

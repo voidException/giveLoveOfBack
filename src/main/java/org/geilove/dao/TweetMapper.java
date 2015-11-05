@@ -6,7 +6,7 @@ import java.util.Map;
 import org.geilove.pojo.Tweet;
 
 public interface TweetMapper {
-    int deleteByPrimaryKey(Long tweetid);
+    int deleteByPrimaryKey(Long tweetid); //根据主键删除推文
 
     int insert(Tweet record);
 

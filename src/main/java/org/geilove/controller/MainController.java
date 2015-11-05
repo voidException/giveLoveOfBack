@@ -5,15 +5,17 @@
 package org.geilove.controller;
 
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.geilove.pojo.Tweet;
+import org.geilove.requestParam.TweetByTweetParam;
 import org.geilove.service.MainService;
-import org.geilove.uo.TweetByTweetUo;
 import org.geilove.vo.TweetListVo;
 import org.geilove.util.TweetHandle;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
@@ -43,11 +45,11 @@ public class MainController {
 		
 	}
 	@RequestMapping(value="/getTweetByUserID")//这个是在可直接获取用户ID时候用
-	public  @ResponseBody List<TweetByTweetUo> getTweetByUserID(@RequestBody TweetListVo tweetListVo ){
+	public  @ResponseBody List<TweetByTweetParam> getTweetByUserID(@RequestBody TweetListVo tweetListVo ){
 		Long	 userID=tweetListVo.getUserID();
 		Integer  page=tweetListVo.getPage();
 		Integer  pageSize=tweetListVo.getPageSize();
-		List<TweetByTweetUo> tweetBytweets=new ArrayList<TweetByTweetUo>();		
+		List<TweetByTweetParam> tweetBytweets=new ArrayList<TweetByTweetParam>();		
 		Map<String,Object> map=new HashMap<String,Object>();//存放查询的参数
 		map.put("userID", userID);
 		map.put("page", page);

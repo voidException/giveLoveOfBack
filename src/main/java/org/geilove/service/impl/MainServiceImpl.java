@@ -38,6 +38,12 @@ public class MainServiceImpl implements MainService {
 		return tweetsByIDs;
 	}
 	
+	@Override
+	public Integer updateTweetByKeySelective(Tweet record){
+		Integer updateTag=tweetMapper.updateByPrimaryKeySelective(record);
+		return updateTag;
+	} 
+	
 	
 	
 }

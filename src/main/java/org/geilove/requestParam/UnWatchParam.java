@@ -1,6 +1,6 @@
-package org.geilove.uo;
+package org.geilove.requestParam;
 
-public class UnWatchUO {
+public class UnWatchParam {
 	private Long  userID;
 	private Long  unWatchManID;
 	
