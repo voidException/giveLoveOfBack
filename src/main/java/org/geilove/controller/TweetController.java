@@ -78,6 +78,7 @@ public class TweetController {
 		// 然后调用Service，将删除标志更新为2
 		Tweet tweet=new Tweet();
 		tweet.setDeletetag((byte) 2);
+		tweet.setTweetid(delTweetParam.getTweetid());//根据这个推文的ID更新
 		Integer updateTag=mainService.updateTweetByKeySelective(tweet);		
 		return  updateTag;
 		

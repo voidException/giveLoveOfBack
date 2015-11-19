@@ -4,7 +4,7 @@ import java.util.Date;
 import org.geilove.pojo.Tweet;
 public class TweetByTweetParam {
 	
-		private Tweet tweet;//这个是转发的推文
+		private Tweet tweet;//这个是转发的推文,是一个对象
 	
 		private Long tweetid;
 

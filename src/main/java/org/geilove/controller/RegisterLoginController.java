@@ -25,7 +25,11 @@ public class RegisterLoginController {
 	@Resource
 	private RegisterLoginService registerLoginService; 
 	
-
+	
+	@RequestMapping(value="/loginn",method=RequestMethod.GET)
+	public @ResponseBody Integer loongin(){
+		return 1;
+	}
 	
 	@RequestMapping(value="/login",method=RequestMethod.POST)	
 	public @ResponseBody User loginUser(@RequestBody UserLoginVo userLoginVo){
