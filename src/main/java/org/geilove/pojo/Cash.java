@@ -57,8 +57,8 @@ public class Cash {
         return useridcircle;
     }
 
-    public void setUseridcircle(Integer useridcircle) {
-        this.useridcircle = useridcircle;
+    public void setUseridcircle(Integer integer) {
+        this.useridcircle = integer;
     }
 
     public Byte getCountstate() {
