@@ -18,7 +18,7 @@ import javax.annotation.Resource;
 
 import org.geilove.service.ChangeManToBeHelpedService;
 /*
- *这个实现帮助人有关的控制逻辑 
+ *这个提供爱心社更改普通用户为受助人用户的相关接口
  */
  
 @Controller

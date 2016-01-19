@@ -2,6 +2,7 @@ package org.geilove.service.impl;
 /*
  * 
 */
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -9,9 +10,9 @@ import javax.annotation.Resource;
 
 import  org.geilove.pojo.Tweet;
 import org.geilove.service.MainService;
-import  org.geilove.vo.TweetListVo;
 import  org.geilove.pojo.Tweet;
 import  org.geilove.dao.TweetMapper;
+import org.geilove.dao.UserMapper;
 import  org.springframework.stereotype.Service;
 
 @Service("tweetListService")
@@ -20,6 +21,8 @@ public class MainServiceImpl implements MainService {
 	@Resource 
 	private TweetMapper tweetMapper;
 	
+	@Resource
+	private UserMapper userMapper;
 	
          /* 先根据用户id，按照时间标签获取tweet，然后遍历tweet，如果是转发的，就请求数据库，
 	      * 获取原tweet，合成一块返回,这里还要加上@带来的超链接。
@@ -44,7 +47,12 @@ public class MainServiceImpl implements MainService {
 		return updateTag;
 	} 
 	
-	
+	@Override
+	public List<String> getPhotosByUserIDs(List<Long> useridList){
+		List<String> userPhotos=new ArrayList<String>();
+		userPhotos=userMapper.selectUserPhotos(useridList);              //通过用户表获取列表
+		return userPhotos;
+	}
 	
 }
 

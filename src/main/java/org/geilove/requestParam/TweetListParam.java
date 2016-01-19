@@ -1,6 +1,6 @@
-package org.geilove.vo;
+package org.geilove.requestParam;
 
-public class TweetListVo {
+public class TweetListParam {
 	private Long userID; 		//用户的ID
 	private Integer page;		//开始的页
 	private Integer pageSize;	//每页的大小
@@ -23,6 +23,5 @@ public class TweetListVo {
 	public void setPageSize(Integer pageSize) {
 		this.pageSize = pageSize;
 	}
-	
-	
+
 }

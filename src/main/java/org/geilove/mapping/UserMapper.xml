@@ -38,6 +38,30 @@
     <result column="backupFive" property="backupfive" jdbcType="INTEGER" />
     <result column="backupSix" property="backupsix" jdbcType="INTEGER" />
   </resultMap>
+  <!--这个是自定义的返回部分字段的，不知道行不行啊  -->
+  <resultMap id="UserPhotoResultMap" type="org.geilove.vo.UserPhotoUrl" >
+     <id column="userID" property="userid" jdbcType="BIGINT" />
+     <result column="userPhoto" property="userphoto" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="UserPhotoList" >
+    userID, userPhoto
+  </sql>
+  
+  
+  <!--  自定义，获得用户的头像-->
+  <select id="selectUserPhotos" resultMap="UserPhotoResultMap" >
+    select 
+    <include refid="UserPhotoList" />
+    from user where userID  in
+                  <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+                        #{item}
+                </foreach>
+  </select>
+  <!--自定义返回用户头像的结束 -->
+  
+  
+  
+  
   <sql id="Base_Column_List" >
     userID, digital, userNickName, userEMail, userPassword, userType, certificateType, 
     realName, identityCard, sex, selfIntroduce, userTag, university, collegeYear, universityTwo, 

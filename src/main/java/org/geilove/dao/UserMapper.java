@@ -1,5 +1,7 @@
 package org.geilove.dao;
 
+import java.util.List;
+
 import org.geilove.pojo.User;
 
 public interface UserMapper {
@@ -16,4 +18,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+    
+    List<String> selectUserPhotos(List<Long> list); //自定义获取用户头像的方法
 }

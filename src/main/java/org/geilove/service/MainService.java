@@ -6,8 +6,6 @@ import java.util.List;
 
 import org.geilove.pojo.Tweet;
 
-
-
 import java.util.Map;
 
 public interface  MainService {
@@ -16,5 +14,7 @@ public interface  MainService {
 	public List<Tweet> getTweetByDiffIDs(List<Long> lst);
 	
 	public Integer updateTweetByKeySelective(Tweet recoord);//只更新记录不为空的字段
+	
+	public List<String> getPhotosByUserIDs(List<Long> useridList);//根据用户的id取得用户的头像地址
    
 }
