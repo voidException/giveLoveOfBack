@@ -27,6 +27,19 @@
     from discussreply
     where discussReplyID = #{discussreplyid,jdbcType=BIGINT}
   </select>
+  <!-- 自定义 -->
+    <select id="getTweetCommentList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+       select
+       <include refid="Base_Column_List" />
+       from 
+           discussreply     
+       where  
+           discussReplyID= #{tweetid,jdbcType=INTEGER} 
+      order by publishTime  desc
+      limit #{page, jdbcType=INTEGER},#{pageSize, jdbcType=INTEGER}
+  </select>
+  <!-- 自定义结束 -->
+   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from discussreply
     where discussReplyID = #{discussreplyid,jdbcType=BIGINT}

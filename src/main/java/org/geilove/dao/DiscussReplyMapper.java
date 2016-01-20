@@ -1,7 +1,8 @@
 package org.geilove.dao;
 
+import java.util.List;
+import java.util.Map;
 import org.geilove.pojo.DiscussReply;
-
 public interface DiscussReplyMapper {
     int deleteByPrimaryKey(Long discussreplyid);
 
@@ -14,4 +15,6 @@ public interface DiscussReplyMapper {
     int updateByPrimaryKeySelective(DiscussReply record);
 
     int updateByPrimaryKey(DiscussReply record);
+    
+    List<DiscussReply> getTweetCommentList(Map<String,Object> map);
 }

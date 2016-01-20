@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.geilove.requestParam.DelCommentParam;
+import org.geilove.requestParam.CommentListParam;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
@@ -42,6 +43,23 @@ public class CommentController {
 		int err=0;
 		err=commentService.delComment(delCommentParam.getCommentid());
 		return err;
+	}
+/* 
+ * 这个实现获取某条推文的评论列表的功能。
+ * 	
+*/	
+	@RequestMapping("listcomments")
+	public @ResponseBody List<DiscussReply> getCommentList(@RequestBody CommentListParam commentListParam){
+		 List<DiscussReply> ls=new ArrayList<DiscussReply>();
+		 Long tweetid=commentListParam.getTweetid();
+		 Integer page=commentListParam.getPage();
+		 Integer pageSize=commentListParam.getPageSize();
+		 Map<String,Object> map=new HashMap<String,Object>();
+		 map.put("tweetid", tweetid);
+		 map.put("page", page);
+		 map.put("pageSize", pageSize);
+		 ls=commentService.getTweetComments(map);
+		 return ls;
 	}
 	
 	

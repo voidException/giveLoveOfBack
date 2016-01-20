@@ -1,6 +1,12 @@
 package org.geilove.service.impl;
 
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.ArrayList;
+
 import javax.annotation.Resource;
+
 import  org.geilove.pojo.DiscussReply;
 import  org.geilove.service.CommentService;
 import  org.geilove.dao.DiscussReplyMapper;
@@ -26,11 +32,17 @@ public class CommentServiceImpl implements CommentService{
 	public Integer  delComment(Long commentid){
 		int err=0;
 		try{
-	    err=replyMapper.deleteByPrimaryKey(commentid);
+	        err=replyMapper.deleteByPrimaryKey(commentid);
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 		}
 		return err;
+	}
+	
+	@Override
+	public List<DiscussReply> getTweetComments(Map<String,Object> map){
+		List<DiscussReply> ls=replyMapper.getTweetCommentList(map);
+		return ls;
 	}
 	
 }
