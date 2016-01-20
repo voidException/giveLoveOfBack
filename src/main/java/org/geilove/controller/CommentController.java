@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import org.geilove.requestParam.DelCommentParam;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
@@ -38,8 +38,10 @@ public class CommentController {
 	//根据微博客户端的设计，长按要删除的微博，松手后，如果是当前用户评论的会有删除选项，否则没有，
 	//这个应该是长按的时候检测了下该评论是不是当前用户发布的。客户端就能完成。
 	@RequestMapping("/delcomment")
-	public @ResponseBody Integer delComment(){
-		return 0;
+	public @ResponseBody Integer delComment(@RequestBody DelCommentParam delCommentParam ){
+		int err=0;
+		err=commentService.delComment(delCommentParam.getCommentid());
+		return err;
 	}
 	
 	

@@ -21,4 +21,16 @@ public class CommentServiceImpl implements CommentService{
 		return err;
 		
 	}
+	
+	@Override
+	public Integer  delComment(Long commentid){
+		int err=0;
+		try{
+	    err=replyMapper.deleteByPrimaryKey(commentid);
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+		return err;
+	}
+	
 }
