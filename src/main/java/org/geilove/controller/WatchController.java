@@ -37,7 +37,7 @@ public class WatchController {
 	    	
 	    	followVo.setWatchtips("关注成功了");
 	    }else{
-	    	followVo.setWatchtips("关注失败了");;
+	    	followVo.setWatchtips("关注失败了");
 	    }	    
 		return followVo ;
 	}
