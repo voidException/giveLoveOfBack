@@ -2,7 +2,6 @@
 package org.geilove.controller;
 
 import javax.annotation.Resource;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,37 +11,29 @@ import org.geilove.pojo.User;
 import org.geilove.vo.UserLoginVo;
 import org.geilove.service.RegisterLoginService;
 import org.geilove.vo.UserRegisterVo;
+import org.geilove.response.UserProfileRsp;
 @Controller
 @RequestMapping("/user")
 public class RegisterLoginController {
 	
-	private  Integer USER_EXIST=0;
-	private  Integer USER_NOT_EXIST=1;// 用户不存在
-	private  Integer USER_PASSWORD_WRONG=2;//用户密码错误
-	private  Integer USER_NOT_SAY=3;//用户被禁言
-	private  Integer USER_HAS_EXIST=4;//邮箱已经注册，请登录
-	
 	@Resource
 	private RegisterLoginService registerLoginService; 
 	
-	
-	@RequestMapping(value="/loginn",method=RequestMethod.GET)
-	public @ResponseBody Integer loongin(){
-		return 1;
-	}
-	
 	@RequestMapping(value="/login",method=RequestMethod.POST)	
-	public @ResponseBody User loginUser(@RequestBody UserLoginVo userLoginVo){
+	public @ResponseBody UserProfileRsp loginUser(@RequestBody UserLoginVo userLoginVo){
 		//这里应该先验证用户邮箱和密码是不是符合要求，避免浪费资源查询数据库
+		UserProfileRsp  userProfileRsp=new UserProfileRsp();
 		User user=registerLoginService.userLogin(userLoginVo.getUserEmail());
 		if(user==null){
-			user.setBackupsix(USER_NOT_EXIST);
+			userProfileRsp.setData(user);
+			userProfileRsp.setMsg("用户为空");
+			userProfileRsp.setRetcode(200);
 		}
 		else if(userLoginVo.getUserPassword()==user.getUserpassword()){
-			user.setBackupsix(USER_EXIST);
+			
 		}
 		
-		return user;
+		return userProfileRsp;
 	}
 	
 	@RequestMapping(value="/register",method=RequestMethod.POST)
@@ -69,10 +60,6 @@ public class RegisterLoginController {
 		return userRegister; //这么返回是为了，注册成功立马跳转到主页，和登录时一样。
 		
 	}
-	
-	//检验邮箱或者昵称是不是可用
-	
-	
 	
 	
 		

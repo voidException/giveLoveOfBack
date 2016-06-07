@@ -1,5 +1,5 @@
 package org.geilove.vo;
-
+//这个代表登录信息
 public class UserLoginVo {
 	private String  userEmail;
 	private String  userPassword;
