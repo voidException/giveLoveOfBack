@@ -26,11 +26,22 @@ public class RegisterLoginController {
 		User user=registerLoginService.userLogin(userLoginVo.getUserEmail());
 		if(user==null){
 			userProfileRsp.setData(user);
-			userProfileRsp.setMsg("用户为空");
-			userProfileRsp.setRetcode(200);
+			userProfileRsp.setMsg("不存在此用户");
+			userProfileRsp.setRetcode(2001); //不存在此用户
 		}
-		else if(userLoginVo.getUserPassword()==user.getUserpassword()){
-			
+		else if (! userLoginVo.getUserPassword().equals(user.getUserpassword())){
+			userProfileRsp.setData(null);
+			userProfileRsp.setMsg("您输入的密码不对");
+			userProfileRsp.setRetcode(2002); //用户密码错误
+		}else if(userLoginVo.getUserPassword().equals(user.getUserpassword())){
+			userProfileRsp.setData(user);
+			userProfileRsp.setMsg("请求成功");
+			userProfileRsp.setRetcode(2000); //返回成功
+		}
+		else{
+			userProfileRsp.setData(null);
+			userProfileRsp.setMsg("服务器错误");
+			userProfileRsp.setRetcode(2003); //未知错误
 		}
 		
 		return userProfileRsp;
