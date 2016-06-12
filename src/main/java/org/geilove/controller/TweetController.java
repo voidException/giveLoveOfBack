@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import javax.annotation.Resource;
+import org.geilove.response.TweetsListRsp;
 /*
  * 这个用来提供有关推文的操作，查看一个人关注的推文，需要使用RabbitMQ的订阅发布，暂时没做。
 */
@@ -75,7 +76,7 @@ public class TweetController {
 	}
 	/*这个仅仅用来测试，返回一组weibo，以便马上能写App信息流列表*/
 	@RequestMapping(value="/getTweetLists")//这个是在可直接获取用户ID时候用
-	public  @ResponseBody List<Tweet> getTweetLists(@RequestBody TweetListParam tweetListParam ){
+	public  @ResponseBody TweetsListRsp getTweetLists(@RequestBody TweetListParam tweetListParam ){
 		Long	 userID=tweetListParam.getUserID();
 		Integer  page=tweetListParam.getPage();
 		Integer  pageSize=tweetListParam.getPageSize();
@@ -83,8 +84,18 @@ public class TweetController {
 		map.put("userID", userID);
 		map.put("page", page);
 		map.put("pageSize", pageSize);
+		TweetsListRsp tweetsListRsp=new TweetsListRsp();
 		List<Tweet> tweets=mainService.getTweetList(map);//首先取得推文，不带头像，不带转发的推文
-	    return tweets;
+		if(tweets==null){
+			tweetsListRsp.setData(tweets);
+			tweetsListRsp.setMsg("用户没有发表推文哦");
+			tweetsListRsp.setRetcode(2001);
+		}else{
+			tweetsListRsp.setData(tweets);
+			tweetsListRsp.setMsg("获取数据成功");
+			tweetsListRsp.setRetcode(2000);
+		}
+	    return tweetsListRsp;
 	}
 	
 	/*这个是删除一条推文，因此需要用户名、密码、推文的ID，要授权才能删除，只做逻辑删除*/
